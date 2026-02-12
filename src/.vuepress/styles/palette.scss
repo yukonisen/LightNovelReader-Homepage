@@ -1,0 +1,50 @@
+// you can change colors here
+// background
+$vp-c-bg: (
+  light: #f7f8fb,
+  dark: #0e0e12,
+);
+$vp-c-bg-alt: (
+  light: #ffffff,
+  dark: #161a22,
+);
+$vp-c-bg-elv: (
+  light: #ffffff,
+  dark: #1a1f2a,
+);
+
+// text
+$vp-c-text: (
+  light: #1d2433,
+  dark: #e6edf7,
+);
+
+// border
+$vp-c-border: (
+  light: #d7dbe2,
+  dark: #2a3242,
+);
+$vp-c-divider: (
+  light: #e6e9ef,
+  dark: #232a39,
+);
+
+// shadow
+$vp-c-shadow: (
+  light: rgb(0 0 0 / 12%),
+  dark: rgb(0 0 0 / 40%),
+);
+
+// control
+$vp-c-control: (
+  light: rgb(133 143 160 / 12%),
+  dark: rgb(101 117 133 / 16%),
+);
+$vp-c-control-hover: (
+  light: rgb(133 143 160 / 20%),
+  dark: rgb(101 117 133 / 24%),
+);
+$vp-c-control-disabled: (
+  light: #e7e9ee,
+  dark: #303848,
+);
