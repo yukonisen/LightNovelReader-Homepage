@@ -8,3 +8,5 @@ dist/
 src/.vuepress/.temp/
 src/.vuepress/.cache/
 /src/.vuepress/
+.vercel
+.env
