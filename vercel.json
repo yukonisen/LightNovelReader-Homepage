@@ -10,8 +10,5 @@
   },
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api/$1" }
-  ],
-  "env": {
-    "GITHUB_TOKEN": "@github_token"
-  }
+  ]
 }
