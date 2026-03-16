@@ -5,7 +5,7 @@ import navbar from "./navbar.js";
 import sidebar from "./sidebar.js";
 
 export default hopeTheme({
-  hostname: "https://lnr.curiousers.org",
+  hostname: "https://lnr.nariko.org",
 
   author: {
     name: "LNR 开发组"

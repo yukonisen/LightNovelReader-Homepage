@@ -17,7 +17,7 @@ export default defineClientConfig({
       import("vue-matomo").then((module) => {
         const VueMatomo = module.default;
         app.use(VueMatomo, {
-          host: "https://analytics.curiousers.org/",
+          host: "https://analytics.nariko.org/",
           siteId: 3,
           router: router,
           enableLinkTracking: true,
