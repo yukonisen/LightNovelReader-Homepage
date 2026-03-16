@@ -132,7 +132,7 @@ async function ciArtifacts(run: GHWorkflowRun): Promise<Artifact[]> {
     const r = await ghFetch(run.artifacts_url, TIMEOUT_BEST_EFFORT);
     if (!r.ok) return [];
     const { artifacts }: { artifacts: GHArtifact[] } = await r.json();
-    const live = artifacts.filter(a => !a.expired);
+    const live = artifacts.filter(a => !a.expired && !a.name.toLowerCase().includes("debug"));
     if (live.length === 0) return [];
 
     return live.map(a => {
@@ -189,7 +189,7 @@ const getUnstable = async (): Promise<UpdateInfo> => {
   const hit = cached<UpdateInfo>("ch:unstable");
   if (hit) return hit;
 
-  const r = await ghFetch(`${GH_API}/repos/${REPO}/actions/runs?status=success&per_page=10`);
+  const r = await ghFetch(`${GH_API}/repos/${REPO}/actions/workflows/marge.yml/runs?status=success&per_page=10`);
   if (!r.ok) throw new Error(`GitHub ${r.status}`);
   const { workflow_runs: runs = [] }: { workflow_runs: GHWorkflowRun[] } = await r.json();
   if (runs.length === 0) throw new Error("No successful CI build found");
