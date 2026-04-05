@@ -139,7 +139,7 @@ const pickAsset = (release) => {
   return {
     name: asset.name,
     sizeMB: toMB(asset.size || 0),
-    url: `https://ghproxy.com/${asset.browser_download_url}`,
+    url: `https://ghfast.top/${asset.browser_download_url}`,
   };
 };
 
