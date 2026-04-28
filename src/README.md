@@ -6,8 +6,6 @@ bgImage: assets/image/hero-bg.webp
 bgImageDark: assets/image/hero-bg-dark.webp
 bgImageStyle:
   background-attachment: fixed
-heroStyle:
-  min-height: 940px
 heroText: LightNovelReader
 tagline: 开源的轻小说阅读器
 actions:
@@ -16,7 +14,7 @@ actions:
     link: ./download
     type: primary
 
-#  - text: 开发指南
+#  - text: 开发文档
 #    link: ./guide/
 #
 #  - text: 常见问题
@@ -47,7 +45,7 @@ highlights:
         icon: material-symbols:explore-rounded
         details: 发现新书、推荐榜，标签分类，关键词搜索……
 
-      - title: 多数据源 *¹
+      - title: 多数据源
         icon: material-symbols:frame-source-sharp
         details: 多数据源插件支持，数据源之间数据独立。开发属于自己的数据源插件。
 
@@ -226,6 +224,3 @@ highlights:
 #
 #copyright: false
 ---
-
-<small>注：</small>
-¹ <small><small>插件系统及 API 当前仍在开发阶段，具体效果以数据源实现为准。</small></small>

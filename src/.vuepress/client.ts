@@ -4,8 +4,11 @@ import Varlet from "@varlet/ui";
 import "@varlet/ui/es/style";
 import ChangelogPage from "./components/changelog/ChangelogPage.vue";
 import DownloadPage from "./components/download/DownloadPage.vue";
+import FooterBlock from "./components/layout/FooterBlock.vue";
 
 export default defineClientConfig({
+  rootComponents: [FooterBlock],
+
   enhance({ app, router }) {
     app.use(createPinia());
     app.use(Varlet);

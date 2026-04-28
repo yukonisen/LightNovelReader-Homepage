@@ -1,5 +1,4 @@
 import { hopeTheme } from "vuepress-theme-hope";
-import { footer } from "./footer.js";
 
 import navbar from "./navbar.js";
 import sidebar from "./sidebar.js";
@@ -30,8 +29,7 @@ export default hopeTheme({
   },
 
   copyright: false,
-  footer: footer,
-  displayFooter: true,
+  displayFooter: false,
   editLink: true,
 
   // 加密配置
