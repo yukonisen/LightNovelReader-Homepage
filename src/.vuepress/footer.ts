@@ -53,7 +53,6 @@ export const footer = `
         </div>
         <div class="lnr-footer__bottomItem lnr-footer__meta">
           <span>Made with Love</span>
-          <span>Designed by yukonisen</span>
         </div>
       </div>
     </div>

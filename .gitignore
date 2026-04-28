@@ -7,6 +7,13 @@ dist/
 *.log
 src/.vuepress/.temp/
 src/.vuepress/.cache/
-/src/.vuepress/
+src/.vuepress/*
+!src/.vuepress/components/
+!src/.vuepress/theme/
+src/.vuepress/theme/*
+!src/.vuepress/theme/client.ts
+!src/.vuepress/theme/layouts/
+src/.vuepress/theme/layouts/*
+!src/.vuepress/theme/layouts/Layout.vue
 .vercel
 .env

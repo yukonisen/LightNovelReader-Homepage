@@ -218,6 +218,9 @@ onMounted(async () => {
   display: grid;
   gap: 16px;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  --download-primary: #1f3fb3;
+  --download-primary-hover: #17308d;
+  --download-primary-soft: rgba(31, 63, 179, 0.1);
 }
 
 .download-card {
@@ -259,7 +262,7 @@ onMounted(async () => {
   margin-top: 8px;
   padding: 8px 14px;
   border-radius: 8px;
-  background: #1f3fb3;
+  background: var(--download-primary);
   color: #fff;
   text-decoration: none;
 }
@@ -312,14 +315,21 @@ onMounted(async () => {
 .download-btn.is-secondary {
   background: transparent;
   border: 1px solid currentColor;
-  color: #1f3fb3;
+  color: var(--download-primary);
 }
 
 .download-btn.is-secondary:hover {
-  background: rgba(31, 63, 179, 0.1);
+  background: var(--download-primary-soft);
 }
 
 .download-btn:hover {
-  background: #17308d;
+  background: var(--download-primary-hover);
+}
+
+html[data-theme="dark"] .download-cards,
+.theme-dark .download-cards {
+  --download-primary: #8fb4ff;
+  --download-primary-hover: #6f9eff;
+  --download-primary-soft: rgba(143, 180, 255, 0.16);
 }
 </style>

@@ -1,5 +1,5 @@
 ---
-title: 插件仓库
+title: 文档
 sidebar: false
 breadcrumb: false
 pageInfo: false
@@ -8,8 +8,6 @@ next: false
 editLink: false
 ---
 
-<ClientOnly>
-  <PluginRepositoryApp />
-</ClientOnly>
+# 文档
 
-## 发布插件
+- [更新日志](./changelogs)

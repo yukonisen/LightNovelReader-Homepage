@@ -1,5 +1,6 @@
 import { defineUserConfig } from "vuepress";
 import { viteBundler } from "@vuepress/bundler-vite";
+import { removeHtmlExtensionPlugin } from "vuepress-plugin-remove-html-extension";
 
 import theme from "./theme.js";
 
@@ -11,6 +12,7 @@ export default defineUserConfig({
   description: "开源的多数据源轻小说阅读器。",
 
   theme,
+  plugins: [removeHtmlExtensionPlugin()],
 
   bundler: viteBundler({
     viteOptions: {
