@@ -2,6 +2,7 @@
   "installCommand": "pnpm install --frozen-lockfile",
   "buildCommand": "pnpm docs:build",
   "outputDirectory": "src/.vuepress/dist",
+  "cleanUrls": true,
   "functions": {
     "api/**/*.ts": {
       "memory": 256,
