@@ -1,12 +1,13 @@
 {
   "installCommand": "pnpm install --frozen-lockfile",
   "buildCommand": "pnpm docs:build",
+  "devCommand": "pnpm docs:dev --port $PORT",
   "outputDirectory": "src/.vuepress/dist",
   "cleanUrls": true,
   "functions": {
     "api/**/*.ts": {
       "memory": 256,
-      "maxDuration": 10
+      "maxDuration": 30
     }
   },
   "rewrites": [

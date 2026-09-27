@@ -91,12 +91,10 @@ import { onMounted, ref } from "vue";
 const owner = "dmzz-yyhyy";
 const repo = "LightNovelReader";
 const apiBases = [
-  // Preferred: proxy GitHub API via ghproxy, then add CORS support
-  "https://cors.isomorphic-git.org/https://ghproxy.com/https://api.github.com",
-  // Fallback: direct GitHub API (CORS supported by GitHub)
+  // Preferred: proxy GitHub API via ghproxy
+  "https://v4.gh-proxy.org/https://api.github.com",
+  // Fallback: direct GitHub API
   "https://api.github.com",
-  // Fallback: CORS proxy for direct GitHub API
-  "https://cors.isomorphic-git.org/https://api.github.com",
 ];
 const actionsUrl = `https://github.com/${owner}/${repo}/actions?query=branch%3Arefactoring+is%3Asuccess`;
 

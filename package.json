@@ -5,9 +5,10 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "docs:build": "vuepress-vite build src",
-    "docs:clean-dev": "vuepress-vite dev src --clean-cache",
-    "docs:dev": "vuepress-vite dev src",
+    "dev": "vuepress dev src --config src/.vuepress/config.ts",
+    "docs:build": "vuepress build src --config src/.vuepress/config.ts",
+    "docs:clean-dev": "vuepress dev src --config src/.vuepress/config.ts --clean-cache",
+    "docs:dev": "vuepress dev src --config src/.vuepress/config.ts",
     "docs:update-package": "npx vp-update"
   },
   "devDependencies": {
@@ -24,6 +25,7 @@
     "vuepress-theme-hope": "2.0.0-rc.101"
   },
   "dependencies": {
+    "@vercel/functions": "3.9.9",
     "vue-matomo": "^4.2.0"
   }
 }
