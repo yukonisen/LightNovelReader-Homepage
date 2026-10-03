@@ -16,7 +16,7 @@ const CACHE_LIMIT         = 128;
 const webhookCacheEnabled = () => process.env.UPDATE_WEBHOOK_ENABLED === "true"
   && Boolean(process.env.GITHUB_WEBHOOK_SECRET);
 
-type Channel = "stable" | "beta" | "unstable";
+type Channel = "stable" | "beta" | "ci";
 
 interface Artifact {
   name: string;
@@ -256,7 +256,7 @@ const getBeta = async (): Promise<UpdateInfo> => {
   throw new Error("No release found");
 };
 
-const getUnstable = () => getOrFetchCached("ch:unstable", async (): Promise<UpdateInfo> => {
+const getCI = () => getOrFetchCached("ch:ci", async (): Promise<UpdateInfo> => {
   const { workflow_runs: runs = [] } = await ghJson<{ workflow_runs: GHWorkflowRun[] }>(
     `${GH_API}/repos/${REPO}/actions/workflows/marge.yml/runs?status=success&per_page=5`,
   );
@@ -275,7 +275,7 @@ const getUnstable = () => getOrFetchCached("ch:unstable", async (): Promise<Upda
   const ver = await fetchVersion(run.head_sha, `ci-${run.head_sha.slice(0, 7)}`);
 
   return {
-    channel:       "unstable",
+    channel:       "ci",
     version:       ver.versionName,
     version_code:  ver.versionCode,
     artifacts:     arts,
@@ -290,7 +290,7 @@ const getUnstable = () => getOrFetchCached("ch:unstable", async (): Promise<Upda
 const handlers: Record<Channel, () => Promise<UpdateInfo>> = {
   stable: getStable,
   beta: getBeta,
-  unstable: getUnstable,
+  ci: getCI,
 };
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
@@ -304,15 +304,23 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   const rawChannel = req.query.channel ?? "stable";
   const channel = typeof rawChannel === "string" ? rawChannel.toLowerCase() : "";
+  if (channel === "unstable") {
+    res.setHeader("Cache-Control", "public, max-age=3600");
+    res.setHeader("Vercel-CDN-Cache-Control", "public, s-maxage=86400");
+    return res.status(200).json({
+      error: "Deprecated",
+      message: "The unstable channel has been retired.",
+    });
+  }
   if (!Object.hasOwn(handlers, channel)) {
-    return res.status(400).json({ error: "Invalid channel", message: 'Channel must be one of: "stable", "beta", "unstable"' });
+    return res.status(400).json({ error: "Invalid channel", message: 'Channel must be one of: "stable", "beta", "ci"' });
   }
 
   try {
     const data = await withTimeout(handlers[channel as Channel](), TIMEOUT_HANDLER, `/api/update?channel=${channel}`);
     const normalTTL = webhookCacheEnabled()
-      ? (channel === "unstable" ? 900 : 3600)
-      : (channel === "unstable" ? 300 : 900);
+      ? (channel === "ci" ? 900 : 3600)
+      : (channel === "ci" ? 300 : 900);
     const edgeTTL = degraded.has(data) || data.version_code === 0 || data.artifacts.length === 0 ? 30 : normalTTL;
     res.setHeader("Cache-Control", "public, max-age=0, must-revalidate");
     res.setHeader("Vercel-CDN-Cache-Control", `public, s-maxage=${edgeTTL}, stale-while-revalidate=86400`);

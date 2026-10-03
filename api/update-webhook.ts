@@ -69,7 +69,7 @@ export function createWebhookHandler(invalidate: (tags: string[]) => Promise<unk
     } else if (event === "workflow_run" && payload.action === "completed"
       && payload.workflow_run?.conclusion === "success"
       && payload.workflow_run.path === ".github/workflows/marge.yml") {
-      tags = ["lnr-update-unstable"];
+      tags = ["lnr-update-ci"];
     } else {
       return reply(200, { ok: true, ignored: true });
     }
